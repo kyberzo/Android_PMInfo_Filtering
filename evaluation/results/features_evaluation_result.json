@@ -1,0 +1,16 @@
+{
+  "model_name": "features",
+  "model_path": "/workspace/models/features/features_model_20251023_191457.keras",
+  "accuracy": 0.8741509614464748,
+  "precision": 0.9299692172383466,
+  "recall": 0.8092413661149909,
+  "f1_score": 0.8654151107473528,
+  "roc_auc": 0.9428340898062072,
+  "true_negatives": 19632,
+  "false_positives": 1274,
+  "false_negatives": 3988,
+  "true_positives": 16918,
+  "model_size_mb": 3.4361114501953125,
+  "status": "SUCCESS",
+  "timestamp": "2025-10-24T01:26:11.639514"
+}

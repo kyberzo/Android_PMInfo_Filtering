@@ -1,0 +1,16 @@
+{
+  "model_name": "xgboost",
+  "model_path": "/workspace/models/xgboost/xgboost_model_20251023_181450.pkl",
+  "accuracy": 0.7462211805223381,
+  "precision": 0.8051817157763681,
+  "recall": 0.6496221180522338,
+  "f1_score": 0.7190850607576841,
+  "roc_auc": 0.8340877595813687,
+  "true_negatives": 17620,
+  "false_positives": 3286,
+  "false_negatives": 7325,
+  "true_positives": 13581,
+  "model_size_mb": 0.7660608291625977,
+  "status": "SUCCESS",
+  "timestamp": "2025-10-23T18:19:18.346480"
+}

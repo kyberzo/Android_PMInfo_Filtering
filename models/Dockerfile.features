@@ -1,0 +1,49 @@
+# Dockerfile for Feature Engineering Model training
+# Multi-input LSTM with 21 engineered features
+
+FROM python:3.8-slim
+
+LABEL model="Features+LSTM"
+LABEL description="Multi-input LSTM with 21 engineered features for Android package name classification"
+
+WORKDIR /workspace
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir \
+    protobuf==3.20.3 \
+    tensorflow==2.8.0 \
+    keras==2.8.0 \
+    numpy==1.22.0 \
+    scikit-learn==1.0.2 \
+    pandas==1.4.0
+
+# Copy training scripts and utilities
+COPY data_utils.py /workspace/
+COPY feature_utils.py /workspace/
+COPY train_with_features.py /workspace/
+
+# Create output directory
+RUN mkdir -p /workspace/output
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV TF_CPP_MIN_LOG_LEVEL=2
+
+# Default training parameters (can be overridden)
+ENV EPOCHS=100
+ENV BATCH_SIZE=512
+ENV PATIENCE=8
+ENV MODEL_TYPE=multi_input
+
+# Entry point
+ENTRYPOINT ["python3", "train_with_features.py"]
+
+# Default arguments
+CMD ["--model-type", "${MODEL_TYPE}", \
+     "--epochs", "${EPOCHS}", \
+     "--batch-size", "${BATCH_SIZE}", \
+     "--patience", "${PATIENCE}"]

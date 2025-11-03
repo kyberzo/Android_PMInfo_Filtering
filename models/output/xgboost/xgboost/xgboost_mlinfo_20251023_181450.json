@@ -1,0 +1,29 @@
+{
+  "version": 20251023181450,
+  "model": "xgboost_model_20251023_181450.pkl",
+  "model_type": "xgboost",
+  "features": {
+    "type": "engineered",
+    "count": 26,
+    "description": "5 character-level features + 21 engineered features"
+  },
+  "training_date": "2025-10-23T18:14:50.869649",
+  "training_time_seconds": 3.384509325027466,
+  "test_metrics": {
+    "accuracy": 0.7462211805223381,
+    "precision": 0.8051817157763681,
+    "recall": 0.6496221180522338,
+    "f1_score": 0.7190850607576841,
+    "roc_auc": 0.8340877595813687,
+    "confusion_matrix": [
+      [
+        17620,
+        3286
+      ],
+      [
+        7325,
+        13581
+      ]
+    ]
+  }
+}

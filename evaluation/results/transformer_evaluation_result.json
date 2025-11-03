@@ -1,0 +1,16 @@
+{
+  "model_name": "transformer",
+  "model_path": "/workspace/models/transformer/transformer_model_20251021_172804.hdf5",
+  "accuracy": 0.8352147708791734,
+  "precision": 0.889723056389723,
+  "recall": 0.7652826939634555,
+  "f1_score": 0.8228245217033533,
+  "roc_auc": 0.9098573556473954,
+  "true_negatives": 18923,
+  "false_positives": 1983,
+  "false_negatives": 4907,
+  "true_positives": 15999,
+  "model_size_mb": 8.114120483398438,
+  "status": "SUCCESS",
+  "timestamp": "2025-10-23T17:25:14.420206"
+}

@@ -1,0 +1,44 @@
+# Docker ignore file for model training
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Output directories
+output/
+*.hdf5
+*mlinfo*.json
+
+# Documentation
+README.md
+*.md
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Comparison results
+comparison_report.*
+
+# Docker files (don't need in container)
+Dockerfile*
+docker-compose.yml
+*.sh
+
+# Test files
+test_*.py
+validate_*.py

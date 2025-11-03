@@ -1,0 +1,37 @@
+FROM tensorflow/tensorflow:2.8.0
+
+WORKDIR /workspace
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip install --no-cache-dir \
+    xgboost \
+    scikit-learn \
+    h5py \
+    keras==2.8.0
+
+# Copy evaluation scripts
+COPY evaluation/evaluate_all_models.py /workspace/
+COPY evaluation/evaluate_model_in_docker.py /workspace/
+COPY evaluation/generate_evaluation_summary.py /workspace/
+
+# Copy custom layers for model loading support
+# This includes TransformerBlock, CNNLSTM, and other custom objects
+COPY models/custom_layers.py /workspace/models/
+
+# Test data (will be mounted)
+# Data should be mounted at /workspace/data
+# Models should be mounted at /workspace/models
+
+# Set environment variables
+ENV TF_CPP_MIN_LOG_LEVEL=2
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH="/workspace/models:${PYTHONPATH}"
+
+# Default command
+CMD ["python3", "evaluate_all_models.py"]

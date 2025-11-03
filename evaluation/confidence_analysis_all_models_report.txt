@@ -1,0 +1,186 @@
+================================================================================
+INTEGRATED CONFIDENCE SCORE ANALYSIS - ALL 7 MODELS
+================================================================================
+
+SECTION 1: OVERALL ACCURACY RANKING
+--------------------------------------------------------------------------------
+Rank  Model                Accuracy     Sensitivity    Specificity   
+--------------------------------------------------------------------------------
+1     features             87.42%       80.92%            93.91%
+2     cnn                  87.39%       79.07%            95.70%
+3     dummy                86.86%       79.26%            94.46%
+4     cnn_lstm             86.73%       81.02%            92.44%
+5     bilstm               86.64%       78.68%            94.59%
+6     transformer          83.52%       76.53%            90.51%
+7     xgboost              74.62%       64.96%            84.28%
+
+SECTION 2: CONFIDENCE-BASED METRICS (at default threshold 0.5)
+--------------------------------------------------------------------------------
+Model           Precision    NPV          FP Count     FN Count    
+--------------------------------------------------------------------------------
+features        93.00%       83.12%       ~3046       ~9537      
+cnn             94.84%       82.06%       ~2150       ~10463     
+dummy           93.47%       82.00%       ~2769       ~10367     
+cnn_lstm        91.47%       82.97%       ~3778       ~9490      
+bilstm          93.57%       81.61%       ~2702       ~10659     
+transformer     88.97%       79.41%       ~4742       ~11735     
+xgboost         80.52%       70.64%       ~7858       ~17518     
+
+SECTION 3: DETAILED COMPARISON TABLE
+--------------------------------------------------------------------------------
+
+FEATURES
+----------------------------------------
+  Accuracy:         87.42%
+  Sensitivity:      80.92% (threats caught)
+  Specificity:      93.91% (legit apps pass)
+  Precision:        93.00% (confident flagging)
+  NPV:              83.12% (confident allowing)
+  ROC-AUC:          0.9428
+  Model Size:       3.44 MB
+  F1-Score:         86.54%
+
+  Per 50K Apps:
+    False Positives:  ~3,046 (analyst review)
+    False Negatives:  ~9,537 (missed threats)
+
+CNN
+----------------------------------------
+  Accuracy:         87.39%
+  Sensitivity:      79.07% (threats caught)
+  Specificity:      95.70% (legit apps pass)
+  Precision:        94.84% (confident flagging)
+  NPV:              82.06% (confident allowing)
+  ROC-AUC:          0.9430
+  Model Size:       5.04 MB
+  F1-Score:         86.24%
+
+  Per 50K Apps:
+    False Positives:  ~2,150 (analyst review)
+    False Negatives:  ~10,463 (missed threats)
+
+DUMMY
+----------------------------------------
+  Accuracy:         86.86%
+  Sensitivity:      79.26% (threats caught)
+  Specificity:      94.46% (legit apps pass)
+  Precision:        93.47% (confident flagging)
+  NPV:              82.00% (confident allowing)
+  ROC-AUC:          0.9389
+  Model Size:       3.16 MB
+  F1-Score:         85.78%
+
+  Per 50K Apps:
+    False Positives:  ~2,769 (analyst review)
+    False Negatives:  ~10,367 (missed threats)
+
+CNN_LSTM
+----------------------------------------
+  Accuracy:         86.73%
+  Sensitivity:      81.02% (threats caught)
+  Specificity:      92.44% (legit apps pass)
+  Precision:        91.47% (confident flagging)
+  NPV:              82.97% (confident allowing)
+  ROC-AUC:          0.9364
+  Model Size:       2.23 MB
+  F1-Score:         85.93%
+
+  Per 50K Apps:
+    False Positives:  ~3,778 (analyst review)
+    False Negatives:  ~9,490 (missed threats)
+
+BILSTM
+----------------------------------------
+  Accuracy:         86.64%
+  Sensitivity:      78.68% (threats caught)
+  Specificity:      94.59% (legit apps pass)
+  Precision:        93.57% (confident flagging)
+  NPV:              81.61% (confident allowing)
+  ROC-AUC:          0.9365
+  Model Size:       7.70 MB
+  F1-Score:         85.48%
+
+  Per 50K Apps:
+    False Positives:  ~2,702 (analyst review)
+    False Negatives:  ~10,659 (missed threats)
+
+TRANSFORMER
+----------------------------------------
+  Accuracy:         83.52%
+  Sensitivity:      76.53% (threats caught)
+  Specificity:      90.51% (legit apps pass)
+  Precision:        88.97% (confident flagging)
+  NPV:              79.41% (confident allowing)
+  ROC-AUC:          0.9099
+  Model Size:       8.11 MB
+  F1-Score:         82.28%
+
+  Per 50K Apps:
+    False Positives:  ~4,742 (analyst review)
+    False Negatives:  ~11,735 (missed threats)
+
+XGBOOST
+----------------------------------------
+  Accuracy:         74.62%
+  Sensitivity:      64.96% (threats caught)
+  Specificity:      84.28% (legit apps pass)
+  Precision:        80.52% (confident flagging)
+  NPV:              70.64% (confident allowing)
+  ROC-AUC:          0.8341
+  Model Size:       0.77 MB
+  F1-Score:         71.91%
+
+  Per 50K Apps:
+    False Positives:  ~7,858 (analyst review)
+    False Negatives:  ~17,518 (missed threats)
+
+SECTION 4: DECISION-MAKING QUALITY RANKING
+--------------------------------------------------------------------------------
+Metric: Balanced score = (Precision + NPV) / 2
+Higher score = Better decision confidence at both 'flag' and 'allow'
+--------------------------------------------------------------------------------
+Rank  Model                Quality Score   Interpretation                
+--------------------------------------------------------------------------------
+1     cnn                  88.45%          Good confidence               
+2     features             88.06%          Good confidence               
+3     dummy                87.73%          Acceptable confidence         
+4     bilstm               87.59%          Acceptable confidence         
+5     cnn_lstm             87.22%          Acceptable confidence         
+6     transformer          84.19%          Lower confidence              
+7     xgboost              75.58%          Lower confidence              
+
+SECTION 5: SECURITY VS SAFETY TRADE-OFF
+--------------------------------------------------------------------------------
+Models ranked by: How well they balance catching threats (sensitivity)
+                  vs avoiding false alarms (specificity)
+--------------------------------------------------------------------------------
+Rank  Model                Balance Score   Sensitivity  Specificity 
+--------------------------------------------------------------------------------
+1     features             86.12%          80.92%        93.91%
+2     cnn                  85.72%          79.07%        95.70%
+3     cnn_lstm             85.59%          81.02%        92.44%
+4     dummy                85.34%          79.26%        94.46%
+5     bilstm               85.05%          78.68%        94.59%
+6     transformer          82.12%          76.53%        90.51%
+7     xgboost              72.69%          64.96%        84.28%
+
+SECTION 6: INTEGRATED RECOMMENDATIONS
+--------------------------------------------------------------------------------
+
+🏆 PRIMARY RECOMMENDATION: FEATURES
+   Accuracy: 87.42%
+   Sensitivity: 80.92%
+   Specificity: 93.91%
+   Decision Quality: 88.06%
+
+🥈 ALTERNATIVE OPTION: CNN
+   Accuracy: 87.39%
+   Sensitivity: 79.07%
+   Specificity: 95.70%
+   Decision Quality: 88.45%
+
+   Why features is preferred:
+   • 0.03% higher accuracy
+   • Better threat detection: 80.92% vs 79.07%
+
+================================================================================

@@ -1,0 +1,16 @@
+{
+  "model_name": "cnn_lstm",
+  "model_path": "/workspace/models/cnn_lstm/cnn_lstm_model_20251023_004412.hdf5",
+  "accuracy": 0.8673108198603272,
+  "precision": 0.9146776109731073,
+  "recall": 0.8101980292738926,
+  "f1_score": 0.859273538961039,
+  "roc_auc": 0.936378550284931,
+  "true_negatives": 19326,
+  "false_positives": 1580,
+  "false_negatives": 3968,
+  "true_positives": 16938,
+  "model_size_mb": 2.225067138671875,
+  "status": "SUCCESS",
+  "timestamp": "2025-10-23T17:25:33.417577"
+}

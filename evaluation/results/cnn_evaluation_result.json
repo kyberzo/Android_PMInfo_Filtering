@@ -1,0 +1,16 @@
+{
+  "model_name": "cnn",
+  "model_path": "/workspace/models/cnn/cnn_model_20251022_204534.hdf5",
+  "accuracy": 0.8738639624988042,
+  "precision": 0.9484222604704532,
+  "recall": 0.790729933990242,
+  "f1_score": 0.862426961602671,
+  "roc_auc": 0.942950127428027,
+  "true_negatives": 20007,
+  "false_positives": 899,
+  "false_negatives": 4375,
+  "true_positives": 16531,
+  "model_size_mb": 5.043144226074219,
+  "status": "SUCCESS",
+  "timestamp": "2025-10-23T17:25:24.028737"
+}

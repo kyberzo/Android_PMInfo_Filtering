@@ -1,0 +1,152 @@
+{
+  "timestamp": "Fri 24 Oct 2025 05:22:00 AM EEST",
+  "models": {
+    "features": {
+      "accuracy": 0.8742,
+      "sensitivity": 0.8092,
+      "specificity": 0.9391,
+      "precision": 0.93,
+      "npv": 0.8312,
+      "f1_score": 0.8654151107473528,
+      "roc_auc": 0.9428340898062072,
+      "size_mb": 3.44,
+      "confusion_matrix": {
+        "TP": 16918,
+        "TN": 19632,
+        "FP": 1274,
+        "FN": 3988
+      },
+      "per_50k_apps": {
+        "false_positives": 3046,
+        "false_negatives": 9537
+      },
+      "decision_quality_score": 0.8806
+    },
+    "cnn": {
+      "accuracy": 0.8739,
+      "sensitivity": 0.7907,
+      "specificity": 0.957,
+      "precision": 0.9484,
+      "npv": 0.8206,
+      "f1_score": 0.862426961602671,
+      "roc_auc": 0.942950127428027,
+      "size_mb": 5.04,
+      "confusion_matrix": {
+        "TP": 16531,
+        "TN": 20007,
+        "FP": 899,
+        "FN": 4375
+      },
+      "per_50k_apps": {
+        "false_positives": 2150,
+        "false_negatives": 10463
+      },
+      "decision_quality_score": 0.8845
+    },
+    "bilstm": {
+      "accuracy": 0.8664,
+      "sensitivity": 0.7868,
+      "specificity": 0.9459,
+      "precision": 0.9357,
+      "npv": 0.8161,
+      "f1_score": 0.8548265558009613,
+      "roc_auc": 0.9365450271092237,
+      "size_mb": 7.7,
+      "confusion_matrix": {
+        "TP": 16449,
+        "TN": 19776,
+        "FP": 1130,
+        "FN": 4457
+      },
+      "per_50k_apps": {
+        "false_positives": 2702,
+        "false_negatives": 10659
+      },
+      "decision_quality_score": 0.8759
+    },
+    "dummy": {
+      "accuracy": 0.8686,
+      "sensitivity": 0.7926,
+      "specificity": 0.9446,
+      "precision": 0.9347,
+      "npv": 0.82,
+      "f1_score": 0.857823217290022,
+      "roc_auc": 0.9388973678254713,
+      "size_mb": 3.16,
+      "confusion_matrix": {
+        "TP": 16571,
+        "TN": 19748,
+        "FP": 1158,
+        "FN": 4335
+      },
+      "per_50k_apps": {
+        "false_positives": 2769,
+        "false_negatives": 10367
+      },
+      "decision_quality_score": 0.8773
+    },
+    "transformer": {
+      "accuracy": 0.8352,
+      "sensitivity": 0.7653,
+      "specificity": 0.9051,
+      "precision": 0.8897,
+      "npv": 0.7941,
+      "f1_score": 0.8228245217033533,
+      "roc_auc": 0.9098573556473954,
+      "size_mb": 8.11,
+      "confusion_matrix": {
+        "TP": 15999,
+        "TN": 18923,
+        "FP": 1983,
+        "FN": 4907
+      },
+      "per_50k_apps": {
+        "false_positives": 4742,
+        "false_negatives": 11735
+      },
+      "decision_quality_score": 0.8419
+    },
+    "cnn_lstm": {
+      "accuracy": 0.8673,
+      "sensitivity": 0.8102,
+      "specificity": 0.9244,
+      "precision": 0.9147,
+      "npv": 0.8297,
+      "f1_score": 0.859273538961039,
+      "roc_auc": 0.936378550284931,
+      "size_mb": 2.23,
+      "confusion_matrix": {
+        "TP": 16938,
+        "TN": 19326,
+        "FP": 1580,
+        "FN": 3968
+      },
+      "per_50k_apps": {
+        "false_positives": 3778,
+        "false_negatives": 9490
+      },
+      "decision_quality_score": 0.8722
+    },
+    "xgboost": {
+      "accuracy": 0.7462,
+      "sensitivity": 0.6496,
+      "specificity": 0.8428,
+      "precision": 0.8052,
+      "npv": 0.7064,
+      "f1_score": 0.7190850607576841,
+      "roc_auc": 0.8340877595813687,
+      "size_mb": 0.77,
+      "confusion_matrix": {
+        "TP": 13581,
+        "TN": 17620,
+        "FP": 3286,
+        "FN": 7325
+      },
+      "per_50k_apps": {
+        "false_positives": 7858,
+        "false_negatives": 17518
+      },
+      "decision_quality_score": 0.7558
+    }
+  }
+}

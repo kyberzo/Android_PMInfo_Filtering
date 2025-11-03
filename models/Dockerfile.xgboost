@@ -1,0 +1,47 @@
+# Dockerfile for XGBoost training
+
+FROM python:3.8-slim
+
+LABEL model="XGBoost"
+LABEL description="XGBoost Gradient Boosting for package name classification"
+
+WORKDIR /workspace
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir \
+    protobuf==3.20.3 \
+    tensorflow==2.8.0 \
+    keras==2.8.0 \
+    numpy==1.22.0 \
+    scikit-learn==1.0.2 \
+    pandas==1.4.0 \
+    xgboost==1.7.6
+
+# Copy training scripts and utilities
+COPY data_utils.py /workspace/
+COPY feature_utils.py /workspace/
+COPY train_xgboost.py /workspace/
+
+# Create output directory
+RUN mkdir -p /workspace/output
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV TF_CPP_MIN_LOG_LEVEL=2
+
+# Default training parameters
+ENV EPOCHS=100
+ENV BATCH_SIZE=1024
+ENV PATIENCE=8
+
+# Entry point
+ENTRYPOINT ["python3", "train_xgboost.py"]
+
+# Default arguments
+CMD ["--epochs", "${EPOCHS}", \
+     "--batch-size", "${BATCH_SIZE}", \
+     "--patience", "${PATIENCE}"]

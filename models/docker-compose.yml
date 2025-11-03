@@ -1,0 +1,200 @@
+version: '3.8'
+
+services:
+  # Bidirectional LSTM Training
+  bilstm:
+    build:
+      context: .
+      dockerfile: Dockerfile.bilstm
+    image: tf-pname-bilstm:latest
+    container_name: train-bilstm
+    volumes:
+      - ..:/workspace/data:ro  # CSV files in parent directory (read-only)
+      - ./output/bilstm:/workspace/output  # Output directory
+    environment:
+      - OUTPUT_DIR=/workspace/output
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-1024}
+      - PATIENCE=${PATIENCE:-8}
+      - EMBEDDING_DIM=${EMBEDDING_DIM:-128}
+      - LSTM_UNITS=${LSTM_UNITS:-128}
+      - DROPOUT=${DROPOUT:-0.3}
+    command: >
+      --epochs ${EPOCHS:-100}
+      --batch-size ${BATCH_SIZE:-1024}
+      --patience ${PATIENCE:-8}
+    profiles:
+      - bilstm
+      - all
+
+  # Transformer Training
+  transformer:
+    build:
+      context: .
+      dockerfile: Dockerfile.transformer
+    image: tf-pname-transformer:latest
+    container_name: train-transformer
+    volumes:
+      - ..:/workspace/data:ro
+      - ./output/transformer:/workspace/output
+    environment:
+      - OUTPUT_DIR=/workspace/output
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-1024}
+      - PATIENCE=${PATIENCE:-8}
+      - D_MODEL=${D_MODEL:-128}
+      - NUM_HEADS=${NUM_HEADS:-4}
+      - FF_DIM=${FF_DIM:-256}
+      - NUM_BLOCKS=${NUM_BLOCKS:-2}
+      - DROPOUT=${DROPOUT:-0.3}
+    command: >
+      --epochs ${EPOCHS:-100}
+      --batch-size ${BATCH_SIZE:-1024}
+      --patience ${PATIENCE:-8}
+    profiles:
+      - transformer
+      - all
+
+  # 1D CNN Training
+  cnn:
+    build:
+      context: .
+      dockerfile: Dockerfile.cnn
+    image: tf-pname-cnn:latest
+    container_name: train-cnn
+    volumes:
+      - ..:/workspace/data:ro
+      - ./output/cnn:/workspace/output
+    environment:
+      - OUTPUT_DIR=/workspace/output
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-1024}
+      - PATIENCE=${PATIENCE:-8}
+      - EMBEDDING_DIM=${EMBEDDING_DIM:-128}
+      - FILTERS=${FILTERS:-256}
+      - DROPOUT=${DROPOUT:-0.5}
+    command: >
+      --epochs ${EPOCHS:-100}
+      --batch-size ${BATCH_SIZE:-1024}
+      --patience ${PATIENCE:-8}
+    profiles:
+      - cnn
+      - all
+
+  # CNN+LSTM Hybrid Training
+  cnn_lstm:
+    build:
+      context: .
+      dockerfile: Dockerfile.cnn_lstm
+    image: tf-pname-cnn-lstm:latest
+    container_name: train-cnn-lstm
+    volumes:
+      - ..:/workspace/data:ro
+      - ./output/cnn_lstm:/workspace/output
+    environment:
+      - OUTPUT_DIR=/workspace/output
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-1024}
+      - PATIENCE=${PATIENCE:-8}
+      - EMBEDDING_DIM=${EMBEDDING_DIM:-128}
+      - CNN_FILTERS=${CNN_FILTERS:-64}
+      - LSTM_UNITS=${LSTM_UNITS:-128}
+      - DROPOUT=${DROPOUT:-0.3}
+    command: >
+      --epochs ${EPOCHS:-100}
+      --batch-size ${BATCH_SIZE:-1024}
+      --patience ${PATIENCE:-8}
+    profiles:
+      - cnn_lstm
+      - all
+
+  # Dummy LSTM Training (Baseline benchmark model)
+  dummy:
+    build:
+      context: .
+      dockerfile: Dockerfile.dummy
+    image: tf-pname-dummy:latest
+    container_name: train-dummy
+    volumes:
+      - ..:/workspace/data:ro
+      - ./output/dummy:/workspace/output
+    environment:
+      - OUTPUT_DIR=/workspace/output
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-1024}
+      - PATIENCE=${PATIENCE:-8}
+    command: >
+      --epochs ${EPOCHS:-100}
+      --batch-size ${BATCH_SIZE:-1024}
+      --patience ${PATIENCE:-8}
+    profiles:
+      - dummy
+      - all
+
+  # Features Engineering Model Training (Multi-input LSTM with 21 features)
+  features:
+    build:
+      context: .
+      dockerfile: Dockerfile.features
+    image: tf-pname-features:latest
+    container_name: train-features
+    volumes:
+      - ..:/workspace/data:ro
+      - ./output/features:/workspace/output
+    environment:
+      - OUTPUT_DIR=/workspace/output
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-512}
+      - PATIENCE=${PATIENCE:-8}
+      - MODEL_TYPE=${MODEL_TYPE:-multi_input}
+    command: >
+      --model-type ${MODEL_TYPE:-multi_input}
+      --epochs ${EPOCHS:-100}
+      --batch-size ${BATCH_SIZE:-512}
+      --patience ${PATIENCE:-8}
+    profiles:
+      - features
+      - all
+
+  # XGBoost Gradient Boosting Training
+  xgboost:
+    build:
+      context: .
+      dockerfile: Dockerfile.xgboost
+    image: tf-pname-xgboost:latest
+    container_name: train-xgboost
+    volumes:
+      - ..:/workspace/data:ro
+      - ./output/xgboost:/workspace/output
+    environment:
+      - OUTPUT_DIR=/workspace/output
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-1024}
+      - PATIENCE=${PATIENCE:-8}
+    command: >
+      --epochs ${EPOCHS:-100}
+      --batch-size ${BATCH_SIZE:-1024}
+      --patience ${PATIENCE:-8}
+    profiles:
+      - xgboost
+      - all
+
+  # Stacked XGBoost + LSTM Training (BEST MODEL!)
+  stacked:
+    build:
+      context: .
+      dockerfile: Dockerfile.xgboost_lstm_stacked
+    image: tf-pname-stacked:latest
+    container_name: train-stacked
+    volumes:
+      - ..:/workspace/data:ro
+      - ./output/xgboost_lstm_stacked:/workspace/output
+    environment:
+      - EPOCHS=${EPOCHS:-100}
+      - BATCH_SIZE=${BATCH_SIZE:-1024}
+      - PATIENCE=${PATIENCE:-8}
+      - OUTPUT_DIR=/workspace/output
+    command: []
+    profiles:
+      - stacked
+      - all

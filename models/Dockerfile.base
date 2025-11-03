@@ -1,0 +1,32 @@
+# Base Docker image for model training
+# Shared by all model architectures
+
+FROM python:3.8-slim
+
+LABEL maintainer="tf-android-package-name"
+LABEL description="Base image for training Android package name classifiers"
+
+# Set working directory
+WORKDIR /workspace
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    tensorflow==2.8.0 \
+    keras==2.8.0 \
+    numpy==1.22.0 \
+    scikit-learn==1.0.2 \
+    pandas==1.4.0
+
+# Create directories
+RUN mkdir -p /workspace/data /workspace/models /workspace/output
+
+# Copy shared utilities
+COPY data_utils.py /workspace/
+
+# Default command (override in specific Dockerfiles)
+CMD ["python3", "--version"]

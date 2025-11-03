@@ -1,0 +1,16 @@
+{
+  "model_name": "bilstm",
+  "model_path": "/workspace/models/bilstm/bilstm_model_20251020_200443.hdf5",
+  "accuracy": 0.866378073280398,
+  "precision": 0.9357187553330679,
+  "recall": 0.7868076150387449,
+  "f1_score": 0.8548265558009613,
+  "roc_auc": 0.9365450271092237,
+  "true_negatives": 19776,
+  "false_positives": 1130,
+  "false_negatives": 4457,
+  "true_positives": 16449,
+  "model_size_mb": 7.699272155761719,
+  "status": "SUCCESS",
+  "timestamp": "2025-10-23T17:23:54.045521"
+}

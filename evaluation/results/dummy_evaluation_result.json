@@ -1,0 +1,16 @@
+{
+  "model_name": "dummy",
+  "model_path": "/workspace/models/dummy/dummy_model_20251023_014648.hdf5",
+  "accuracy": 0.868626231703817,
+  "precision": 0.9346832872694455,
+  "recall": 0.7926432603080455,
+  "f1_score": 0.857823217290022,
+  "roc_auc": 0.9388973678254713,
+  "true_negatives": 19748,
+  "false_positives": 1158,
+  "false_negatives": 4335,
+  "true_positives": 16571,
+  "model_size_mb": 3.1617431640625,
+  "status": "SUCCESS",
+  "timestamp": "2025-10-23T17:26:18.730448"
+}
